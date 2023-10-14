@@ -136,5 +136,8 @@ users1 = [{"name": "Bill Gates", "birthday": datetime(1955, 10, 22)},
 #          {"name": "Rand Al'Tor", "birthday": datetime(1955, 12, 30)},
 #          {"name": "Monkey D.Luffy", "birthday": datetime(1955, 1, 2)}]
 
-get_birthdays_per_week(users1)
+# get_birthdays_per_week(users1)
 # get_birthdays_per_week(users2)
+
+if __name__ == "__main__":
+    get_birthdays_per_week(users1)
