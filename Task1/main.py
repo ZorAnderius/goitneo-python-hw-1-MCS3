@@ -121,7 +121,7 @@ users1 = [{"name": "Bill Gates", "birthday": datetime(1955, 10, 22)},
          {"name": "John Snow", "birthday": datetime(1990, 10, 19)},
          {"name": "Harry Potter", "birthday": datetime(1967, 10, 20)},
          {"name": "Rock", "birthday": datetime(1950, 10, 21)},
-         {"name": "Stallone", "birthday": datetime(1955, 10, 20)},
+         {"name": "Silvester Stallone", "birthday": datetime(1955, 10, 20)},
          {"name": "Madonna", "birthday": datetime(1955, 10, 22)},
          {"name": "Rand Al'Tor", "birthday": datetime(1955, 10, 18)},
          {"name": "Monkey D.Luffy", "birthday": datetime(1955, 10, 18)}]
