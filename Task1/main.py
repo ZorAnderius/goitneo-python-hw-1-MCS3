@@ -1,5 +1,6 @@
 from datetime import datetime
 from collections import defaultdict
+from colorama import Fore
 
 
 def get_birthdays_per_week(users):
@@ -51,7 +52,9 @@ def get_birthdays_per_week(users):
 def print_notes(notes_dict):
     for _, value in notes_dict.items():
         for weekday, names in value.items():
-            print("{: >10} : {: <10}".format(weekday, ', '.join(names)))
+            weekdey_str = Fore.BLUE + '{: >10}'.format(weekday)
+            names_str = Fore.RED+ '{: <10}'.format(', '.join(names))
+            print(f"{weekdey_str} : {names_str}")
 
 # sort user's birthdays from nearest to further
 def sorted_users_notes(users_birthdays_dict, current_day):
@@ -106,7 +109,7 @@ def replace_birthday_date(date):
         elif date.month in [1, 3, 5, 7, 8, 10, 12] and date.day >= 29:   
             if date.month == 12:
                 if date.day == 31:
-                    date = date.replace(year=date.year + 1, month=1, day = 1)
+                    date = date.replace(year=date.year + 1, month=1, day=1)
             elif date.day == 31:
                 date = date.replace(month=date.month + 1, day=1)
         elif date.month in [4, 6, 9, 11] and date.day == 30:
