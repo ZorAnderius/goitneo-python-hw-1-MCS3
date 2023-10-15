@@ -35,7 +35,7 @@ def find_phone(args, contacts):
         return Fore.YELLOW + "Phonebook is empty."
     if name in contacts:
         phone = contacts[name]
-        return phone
+        return Fore.LIGHTMAGENTA_EX + phone
     else:
         return Fore.RED + "Wrong username"
 
@@ -74,7 +74,7 @@ def main():
         elif command == 'change':
             print(change_contact(args, contacts))
         elif command == 'phone':
-            print(Fore.LIGHTMAGENTA_EX + find_phone(args, contacts))
+            print(find_phone(args, contacts))
         elif command == 'all':
             print(show_all(contacts))
         else:
