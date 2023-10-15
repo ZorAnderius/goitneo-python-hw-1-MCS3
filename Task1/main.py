@@ -8,14 +8,13 @@ def get_birthdays_per_week(users):
         print("Your calendar is empty")
     users_birthdays_dict = defaultdict(list)
     dict_of_users = dict()
-    # current_date = datetime(year = 2023, month = 12, day = 27).date()
-    # current_date = datetime(year=2023, month=10, day=18).date()
-    current_date = datetime.today().date()
     
+    current_date = datetime.today().date()
     for user in users:
         name = user['name']
         birthday = user['birthday'].date()
         birthday_this_year = birthday.replace(year=current_date.year)
+        
         # replace users year for current year
         if birthday_this_year < current_date:
             birthday_this_year = birthday_this_year.replace(year=(current_date.year + 1))
@@ -25,7 +24,7 @@ def get_birthdays_per_week(users):
         
         # looking for different between current date and user's birthday
         delta_days = (birthday_this_year - current_date).days
-        if delta_days > 0 and delta_days < 7:
+        if delta_days < 7:
             weekday = birthday_this_year.weekday()
             birthday_weekday = birthday_this_year.strftime('%A')
             
@@ -53,7 +52,7 @@ def print_notes(notes_dict):
     for _, value in notes_dict.items():
         for weekday, names in value.items():
             weekdey_str = Fore.BLUE + '{: >10}'.format(weekday)
-            names_str = Fore.RED+ '{: <10}'.format(', '.join(names))
+            names_str = Fore.YELLOW+ '{: <10}'.format(', '.join(names))
             print(f"{weekdey_str} : {names_str}")
 
 # sort user's birthdays from nearest to further
@@ -61,18 +60,19 @@ def sorted_users_notes(users_birthdays_dict, current_day):
     first_dict = dict()
     second_dict = dict()
     for day, values in users_birthdays_dict:
-        if day > current_day:
+        if day >= current_day:
             first_dict[day] = values
         else:
             second_dict[day] = values
     return first_dict | second_dict
 
-""" replace notice day if birthday it is: 
+# replace notice day if it is not convenient day
+def replace_birthday_date(date):   
+    """ replace notice day if birthday it is: 
     -weekend day
     -last day of the month
     -last day of the year
-"""
-def replace_birthday_date(date):        
+"""     
     if date.weekday() == 5:
         if date.month == 2 and date.day >= 27:
             if date.year % 2 == 0 and date.day == 28:
@@ -119,28 +119,15 @@ def replace_birthday_date(date):
     return date
     
 
-
-users1 = [{"name": "Bill Gates", "birthday": datetime(1955, 10, 22)},
-         {"name": "John Snow", "birthday": datetime(1990, 10, 19)},
+# test data for the week
+users = [{"name": "Bill Gates", "birthday": datetime(1955, 10, 22)},
+         {"name": "John Snow", "birthday": datetime(1990, 10, 15)},
          {"name": "Harry Potter", "birthday": datetime(1967, 10, 20)},
          {"name": "Rock", "birthday": datetime(1950, 10, 21)},
          {"name": "Silvester Stallone", "birthday": datetime(1955, 10, 20)},
          {"name": "Madonna", "birthday": datetime(1955, 10, 22)},
-         {"name": "Rand Al'Tor", "birthday": datetime(1955, 10, 18)},
+         {"name": "Rand Al'Tor", "birthday": datetime(1955, 10, 16)},
          {"name": "Monkey D.Luffy", "birthday": datetime(1955, 10, 18)}]
 
-
-# users2 = [{"name": "Bill Gates", "birthday": datetime(1955, 12, 30)},
-#          {"name": "John Snow", "birthday": datetime(1990, 12, 31)},
-#          {"name": "Harry Potter", "birthday": datetime(1967, 12,30)},
-#          {"name": "Rock", "birthday": datetime(1950, 12, 31)},
-#          {"name": "Stallone", "birthday": datetime(1955, 12, 30)},
-#          {"name": "Madonna", "birthday": datetime(1955, 12, 31)},
-#          {"name": "Rand Al'Tor", "birthday": datetime(1955, 12, 30)},
-#          {"name": "Monkey D.Luffy", "birthday": datetime(1955, 1, 2)}]
-
-# get_birthdays_per_week(users1)
-# get_birthdays_per_week(users2)
-
 if __name__ == "__main__":
-    get_birthdays_per_week(users1)
+    get_birthdays_per_week(users)

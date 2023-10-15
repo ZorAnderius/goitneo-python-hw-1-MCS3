@@ -8,7 +8,7 @@ def add_contact(args, contacts):
     if name in contacts:
         return Fore.YELLOW + f"User {name} is already in your phonebook. If you want to change phone use 'change' operation"
     contacts[name] = phone
-    return Fore.GREEN +'Contact added.'
+    return Fore.GREEN + 'Contact added.'
     
 
 
