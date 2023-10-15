@@ -74,7 +74,7 @@ def main():
         elif command == 'change':
             print(change_contact(args, contacts))
         elif command == 'phone':
-            print(Fore.LIGHTMAGENTA_EX +find_phone(args, contacts))
+            print(Fore.LIGHTMAGENTA_EX + find_phone(args, contacts))
         elif command == 'all':
             print(show_all(contacts))
         else:
